@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="org.gorany.mapper.PartnerMapper">
+ 
+ 
+ 	<resultMap type="org.gorany.domain.PartnerVO" id="partnerMap">
+ 		<id property="pid" column="pid" />
+ 		<result property="ppw" column="ppw" />
+ 		<result property="serialNum" column="serialNum" />
+ 		<collection property="authList" resultMap="authMap"></collection>
+ 	</resultMap>
+ 	
+ 	<resultMap type="org.gorany.domain.AuthVO" id="authMap">
+ 	 	<result property="pid" column="pid" />
+ 		<result property="auth" column="auth" />
+ 	</resultMap>
+
+
+	<select id="getPartner" resultMap="partnerMap">
+	 	select partner.pid, ppw, auth.pid, 'ROLE_SECRET' auth
+		from tbl_partner partner left outer join tbl_auth auth
+		on partner.pid = auth.pid
+		where partner.pid = #{pid}
+	</select>
+
+ 	
+ 	<select id="getPartnerList" resultType="org.gorany.domain.PartnerVO">
+ 		select * from tbl_partner
+ 	</select>
+ 	
+ 	<insert id="registerPartner">
+ 		insert into tbl_partner (pid, ppw, serialNum)
+ 		values ("gorany", "12345678", #{serialNum})
+ 	</insert>
+ 	
+ 	<select id="getPartnerBySerialNum" resultType="org.gorany.domain.PartnerVO">
+ 		select * from tbl_partner where serialNum = #{serialNum}
+ 	</select>
+ 	
+ </mapper>
+
+ 
