@@ -18,9 +18,8 @@
  		<result property="auth" column="auth" />
  	</resultMap>
 
-
 	<select id="getPartner" resultMap="partnerMap">
-	 	select partner.pid, ppw, auth.pid, 'ROLE_SECRET' auth
+	 	select partner.pid, ppw, serialNum, auth.pid, auth
 		from tbl_partner partner left outer join tbl_auth auth
 		on partner.pid = auth.pid
 		where partner.pid = #{pid}

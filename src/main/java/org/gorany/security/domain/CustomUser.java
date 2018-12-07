@@ -32,6 +32,4 @@ public class CustomUser extends User{
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 }

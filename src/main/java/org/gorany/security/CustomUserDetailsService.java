@@ -31,6 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		
 		log.info("" + vo);
 		
+		//임시로 pw 인코딩 (프로젝트 땐 회원가입 단계에서 넣어야 함)
 		vo.setPpw( encoder.encode(vo.getPpw()));
 		
 		CustomUser user = new CustomUser(vo);
