@@ -44,8 +44,7 @@ public class MyBatisSecurityApplicationTests {
 		PartnerVO vo = new PartnerVO();
 		String seNum = "00000000089c4f68";
 		vo.setSerialNum(seNum);
-		List<PartnerVO> list = mapper.getPartnerBySerialNum(vo);
-		log.info("" + list);
+
 	}
 
 }
