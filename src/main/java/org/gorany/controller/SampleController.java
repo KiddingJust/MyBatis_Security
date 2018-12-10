@@ -1,5 +1,7 @@
 package org.gorany.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.gorany.domain.PartnerVO;
 import org.gorany.service.PartnerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,11 @@ public class SampleController {
 	@GetMapping("/secret")
 	public void secret() {
 		log.info("secret");
+	}
+	
+	@GetMapping("/customLogin")
+	public void customLogin() {
+		log.info("custom login.........");
 	}
 	
 	@GetMapping("/partner")

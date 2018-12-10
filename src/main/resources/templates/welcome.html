@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+	
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -37,7 +40,7 @@
     </div>
 </div>
 <form id="actionForm">
-	<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}'/>
+  <input type ="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> 
 </form>
 
 <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
