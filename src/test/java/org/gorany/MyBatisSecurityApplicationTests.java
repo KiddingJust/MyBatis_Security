@@ -42,9 +42,14 @@ public class MyBatisSecurityApplicationTests {
 	public void test() {
 		
 		PartnerVO vo = new PartnerVO();
-		String seNum = "00000000089c4f68";
-		vo.setSerialNum(seNum);
-
+		vo.setPid("gaaaaaik");
+		vo.setPpw("12345678");
+		vo.setPmail("rlarkdlr@naver.com");
+		vo.setOwner_name("김가익");
+		vo.setOwner_num("010-1234-5678");
+		
+		mapper.registerPartner(vo);
+		mapper.registerAuth(vo);
 	}
 
 }

@@ -13,7 +13,6 @@ public interface PartnerMapper {
 	
 	public int registerPartner(PartnerVO vo);
 	
-	public PartnerVO getPartnerBySerialNum(PartnerVO vo);
+	public int registerAuth(PartnerVO vo);
 	
-	public String getAuth(String pid);
 }

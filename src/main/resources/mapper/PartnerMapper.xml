@@ -9,7 +9,9 @@
  	<resultMap type="org.gorany.domain.PartnerVO" id="partnerMap">
  		<id property="pid" column="pid" />
  		<result property="ppw" column="ppw" />
- 		<result property="serialNum" column="serialNum" />
+ 		<result property="pmail" column="pmail" />
+ 		<result property="owner_name" column="owner_name" />
+ 		<result property="owner_num" column="owner_num" />
  		<collection property="authList" resultMap="authMap"></collection>
  	</resultMap>
  	
@@ -19,7 +21,7 @@
  	</resultMap>
 
 	<select id="getPartner" resultMap="partnerMap">
-	 	select partner.pid, ppw, serialNum, auth.pid, auth
+	 	select partner.pid, ppw, pmail, owner_name, owner_num, auth.pid, auth
 		from tbl_partner partner left outer join tbl_auth auth
 		on partner.pid = auth.pid
 		where partner.pid = #{pid}
@@ -31,8 +33,13 @@
  	</select>
  	
  	<insert id="registerPartner">
- 		insert into tbl_partner (pid, ppw, serialNum)
- 		values ("gorany", "12345678", #{serialNum})
+	INSERT INTO tbl_partner (pid, ppw, pmail, owner_name, owner_num)
+	values (#{pid}, #{ppw}, #{pmail}, #{owner_name}, #{owner_num})
+ 	</insert>
+ 	
+ 	<insert id="registerAuth">
+ 	INSERT INTO tbl_auth (pid, auth)
+	values (#{pid}, 'ROLE_GENERAL')
  	</insert>
  	
  	<select id="getPartnerBySerialNum" resultType="org.gorany.domain.PartnerVO">

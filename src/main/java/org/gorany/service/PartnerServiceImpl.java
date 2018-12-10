@@ -34,21 +34,4 @@ public class PartnerServiceImpl implements PartnerService {
 		return mapper.registerPartner(vo);
 	}
 
-	@Override
-	public PartnerVO getPartnerBySerialNum(PartnerVO vo) {
-		log.info("SerialNum으로 해당되는 파트너를 찾습니다");
-		
-		return mapper.getPartnerBySerialNum(vo);
-	}
-
-	@Override
-	public String getAuth(String pid) {
-		log.info("Auth를 가져옵니다.");
-		
-		return mapper.getAuth(pid);
-	}
-
-
-	
-
 }

@@ -9,8 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CsrfFilter;
 
 import lombok.extern.java.Log;
 
@@ -27,9 +27,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		//경로 및 권한 생성하기
 		http
+			.csrf().disable()
 			.authorizeRequests()
-				.antMatchers("/partner/").permitAll()
+				.antMatchers("/partner").authenticated()
 				.antMatchers("/secret").hasRole("SECRET")
+				.antMatchers("/welcome").permitAll()
+				.antMatchers("/partnercreate").permitAll()
 				.and()
 			.formLogin();//인가 받은 권한이 없는 경우에는 login 페이지로 보내주기
 	}

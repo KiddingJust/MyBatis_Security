@@ -14,8 +14,5 @@ public interface PartnerService {
 	
 	public int registerPartner(PartnerVO vo);
 
-	public PartnerVO getPartnerBySerialNum(PartnerVO vo);
-	
-	public String getAuth(String pid);
 
 }

@@ -16,7 +16,7 @@ public class CustomUser extends User{
 	private PartnerVO vo;
 	
 	public CustomUser(PartnerVO vo) {
-		this(vo.getPid(), vo.getPpw(), true, true, true, true,
+		this(vo.getPid(), vo.getPpw(), vo.getPmail(), vo.getOwner_name(), vo.getOwner_num(), true, true, true, true,
 				vo.getAuthList().stream()
 				.map(auth -> new SimpleGrantedAuthority(auth.getAuth()))
 				.collect(Collectors.toList())
@@ -24,7 +24,7 @@ public class CustomUser extends User{
 		this.vo = vo;
 	}
 	
-	public CustomUser(String username, String password, 
+	public CustomUser(String username, String password, String email, String owner_name, String owner_num,
 			boolean enabled, boolean accountNonExpired,
 			boolean credentialsNonExpired, boolean accountNonLocked,
 			Collection<? extends GrantedAuthority> authorities) {
