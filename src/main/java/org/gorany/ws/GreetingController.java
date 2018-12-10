@@ -24,8 +24,7 @@ public class GreetingController extends TextWebSocketHandler {
 	public List<String> id;
 	public String getid, host;
 	public String raspId;
-	
-	
+	public String sNum;
 
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws InterruptedException, IOException {
@@ -34,6 +33,7 @@ public class GreetingController extends TextWebSocketHandler {
 		MsgInfo msgObj = new Gson().fromJson(message.getPayload(), MsgInfo.class);
 		
 		System.out.println(msgObj);
+		System.out.println(msgObj.getFromDevice());
 		
 		if(msgObj.getMyDevice() != null) {
 			monitorMap.put(msgObj.getMyDevice(), session);
@@ -47,13 +47,8 @@ public class GreetingController extends TextWebSocketHandler {
 			if(monitorSession != null) {
 				monitorSession.sendMessage(new TextMessage(msgObj.getFromDevice() + ": " + session.getRemoteAddress().getHostName()) );
 			}
-			
 		}
-		
-		
-		
-		
-
+		sNum = msgObj.getFromDevice();
 	}
 
 	// 세션이 끊길 경우
@@ -72,6 +67,10 @@ public class GreetingController extends TextWebSocketHandler {
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		// sessions.add(session.getId());
 		sessions.put(session.getId(), session);
+		System.out.println("session: " + session);
+		System.out.println("id: " + session.getId());
+		System.out.println("handshakeHeaders: " + session.getHandshakeHeaders());
+		System.out.println("extensions: " + session.getExtensions());
 		System.out.println("지금은 SIZE: " + sessions.size());
 
 	}
